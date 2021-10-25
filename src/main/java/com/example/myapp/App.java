@@ -64,12 +64,11 @@ public class App {
                 .maxNumberOfMessages(1)
                 .build();
             
-        
+            System.out.println(System.getProperty("user.dir"));
             // Print out the messages
             while (true) {
                 try{
 
-                    System.out.println(System.getProperty("user.dir"));
                     File file = new File (System.getProperty("user.dir"), "output.txt");
                     FileWriter out = new FileWriter(file);
 
@@ -140,11 +139,11 @@ public class App {
                     System.out.println("Type: " + text.type());
                     System.out.println();
 
-                    out.write("Detected: " + text.detectedText());
-                    out.write("Confidence: " + text.confidence().toString());
-                    out.write("Id : " + text.id());
-                    out.write("Parent Id: " + text.parentId());
-                    out.write("Type: " + text.type());
+                    out.write("\nDetected: " + text.detectedText());
+                    out.write("\nConfidence: " + text.confidence().toString());
+                    out.write("\nId : " + text.id());
+                    out.write("\nParent Id: " + text.parentId());
+                    out.write("\nType: " + text.type());
                     out.write("\n");
                 }
 
