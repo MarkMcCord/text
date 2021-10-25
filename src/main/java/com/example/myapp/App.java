@@ -64,10 +64,14 @@ public class App {
                 .maxNumberOfMessages(1)
                 .build();
             
-        
+            System.out.println(System.getProperty("user.dir"));
             // Print out the messages
             while (true) {
                 try{
+
+                    File file = new File (System.getProperty("user.dir"), "output.txt");
+                    FileWriter out = new FileWriter(file);
+
                     List<Message> messages = sqsClient.receiveMessage(receiveRequest).messages();
                     if (!messages.isEmpty()){
                         if(messages.get(0).body().equals("-1")){
@@ -85,7 +89,7 @@ public class App {
                             .key(messages.get(0).body())
                             .build();
                         ResponseInputStream<GetObjectResponse> sourceImage = s3.getObject(getRequest);
-                        detectImageText(rekClient, sourceImage, bucketName);
+                        detectImageText(rekClient, sourceImage, bucketName, out);
 
                         DeleteMessageRequest deleteRequest = DeleteMessageRequest.builder()
                         .queueUrl(queueUrl)
@@ -93,8 +97,9 @@ public class App {
                         .build();
                         sqsClient.deleteMessage(deleteRequest);
                     }
-                } catch(SqsException e) {
-                    System.err.println(e.awsErrorDetails().errorMessage());
+                out.close();
+                } catch(SqsException | IOException e) {
+                    System.err.println(e.getMessage());
                     System.exit(1);
                 }
 
@@ -105,7 +110,7 @@ public class App {
         sqsClient.close();
     }
 
-    public static void detectImageText(RekognitionClient rekClient, ResponseInputStream<GetObjectResponse> sourceImage, String bucketName) {
+    public static void detectImageText(RekognitionClient rekClient, ResponseInputStream<GetObjectResponse> sourceImage, String bucketName, FileWriter out) {
 
         try {
             
@@ -123,10 +128,6 @@ public class App {
             DetectTextResponse textResponse = rekClient.detectText(textRequest);
             List<TextDetection> textCollection = textResponse.textDetections();
 
-            System.out.println(System.getProperty("user.home"));
-            File file = new File (System.getProperty("user.home"), "output.txt");
-            FileWriter out = new FileWriter(file);
-
             System.out.println("Detected lines and words");
             out.write("Detected lines and words");
             for (TextDetection text: textCollection) {
@@ -138,18 +139,15 @@ public class App {
                     System.out.println("Type: " + text.type());
                     System.out.println();
 
-                    out.write("Detected: " + text.detectedText());
-                    out.write("Confidence: " + text.confidence().toString());
-                    out.write("Id : " + text.id());
-                    out.write("Parent Id: " + text.parentId());
-                    out.write("Type: " + text.type());
+                    out.write("\nDetected: " + text.detectedText());
+                    out.write("\nConfidence: " + text.confidence().toString());
+                    out.write("\nId : " + text.id());
+                    out.write("\nParent Id: " + text.parentId());
+                    out.write("\nType: " + text.type());
                     out.write("\n");
                 }
 
             }
-
-            out.close();
-
         } catch (RekognitionException | IOException e) {
             System.out.println(e.getMessage());
             System.exit(1);
