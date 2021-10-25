@@ -28,6 +28,7 @@ import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 
+import java.io.*;
 
 /**
  * To run this AWS code example, ensure that you have setup your development environment, including your AWS credentials.
@@ -122,7 +123,10 @@ public class App {
             DetectTextResponse textResponse = rekClient.detectText(textRequest);
             List<TextDetection> textCollection = textResponse.textDetections();
 
+            FileWriter out = new FileWriter("output.txt");
+
             System.out.println("Detected lines and words");
+            out.write("Detected lines and words");
             for (TextDetection text: textCollection) {
                 if (text.confidence() > 90){
                     System.out.println("Detected: " + text.detectedText());
@@ -131,11 +135,20 @@ public class App {
                     System.out.println("Parent Id: " + text.parentId());
                     System.out.println("Type: " + text.type());
                     System.out.println();
+
+                    out.write("Detected: " + text.detectedText());
+                    out.write("Confidence: " + text.confidence().toString());
+                    out.write("Id : " + text.id());
+                    out.write("Parent Id: " + text.parentId());
+                    out.write("Type: " + text.type());
+                    out.write("\n");
                 }
 
             }
 
-        } catch (RekognitionException e) {
+            out.close();
+
+        } catch (RekognitionException | IOException e) {
             System.out.println(e.getMessage());
             System.exit(1);
         }
