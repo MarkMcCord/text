@@ -123,6 +123,7 @@ public class App {
             DetectTextResponse textResponse = rekClient.detectText(textRequest);
             List<TextDetection> textCollection = textResponse.textDetections();
 
+            System.out.println(System.getProperty("user.dir"));
             File file = new File (System.getProperty("user.dir"), "output.txt");
             FileWriter out = new FileWriter(file);
 
