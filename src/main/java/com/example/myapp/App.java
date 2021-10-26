@@ -69,8 +69,12 @@ public class App {
             while (true) {
                 try{
 
+<<<<<<< HEAD
                     File file = new File ("/home/ec2-user/text", "output.txt");
                     FileWriter out = new FileWriter(file);
+=======
+                    File file = new File (System.getProperty("user.dir"), "output.txt");
+>>>>>>> fb985810ed11fca7c99cc6e96cd90160e8dc2bae
 
                     List<Message> messages = sqsClient.receiveMessage(receiveRequest).messages();
                     if (!messages.isEmpty()){
@@ -89,7 +93,7 @@ public class App {
                             .key(messages.get(0).body())
                             .build();
                         ResponseInputStream<GetObjectResponse> sourceImage = s3.getObject(getRequest);
-                        detectImageText(rekClient, sourceImage, bucketName, out);
+                        detectImageText(rekClient, sourceImage, bucketName, file, "\n" +messages.get(0).body());
 
                         DeleteMessageRequest deleteRequest = DeleteMessageRequest.builder()
                         .queueUrl(queueUrl)
@@ -97,8 +101,7 @@ public class App {
                         .build();
                         sqsClient.deleteMessage(deleteRequest);
                     }
-                out.close();
-                } catch(SqsException | IOException e) {
+                } catch(SqsException e) {
                     System.err.println(e.getMessage());
                     System.exit(1);
                 }
@@ -110,9 +113,10 @@ public class App {
         sqsClient.close();
     }
 
-    public static void detectImageText(RekognitionClient rekClient, ResponseInputStream<GetObjectResponse> sourceImage, String bucketName, FileWriter out) {
+    public static void detectImageText(RekognitionClient rekClient, ResponseInputStream<GetObjectResponse> sourceImage, String bucketName, File file, String imageName) {
 
         try {
+            FileWriter out = new FileWriter(file, true);
             
             SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceImage);
             
@@ -129,7 +133,8 @@ public class App {
             List<TextDetection> textCollection = textResponse.textDetections();
 
             System.out.println("Detected lines and words");
-            out.write("Detected lines and words");
+            out.append(imageName);
+            out.append("\nDetected lines and words");
             for (TextDetection text: textCollection) {
                 if (text.confidence() > 90){
                     System.out.println("Detected: " + text.detectedText());
@@ -139,15 +144,16 @@ public class App {
                     System.out.println("Type: " + text.type());
                     System.out.println();
 
-                    out.write("\nDetected: " + text.detectedText());
-                    out.write("\nConfidence: " + text.confidence().toString());
-                    out.write("\nId : " + text.id());
-                    out.write("\nParent Id: " + text.parentId());
-                    out.write("\nType: " + text.type());
-                    out.write("\n");
+                    out.append("\nDetected: " + text.detectedText());
+                    out.append("\nConfidence: " + text.confidence().toString());
+                    out.append("\nId : " + text.id());
+                    out.append("\nParent Id: " + text.parentId());
+                    out.append("\nType: " + text.type());
+                    out.append("\n\n");
                 }
 
             }
+        out.close();
         } catch (RekognitionException | IOException e) {
             System.out.println(e.getMessage());
             System.exit(1);

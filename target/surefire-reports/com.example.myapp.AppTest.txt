@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.example.myapp.AppTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.104 sec
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.048 sec
+>>>>>>> fb985810ed11fca7c99cc6e96cd90160e8dc2bae
