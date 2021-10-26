@@ -1,0 +1,253 @@
+
+1.jpeg
+Detected lines and words
+Detected: Downtown
+Confidence: 95.82787
+Id : 0
+Parent Id: null
+Type: LINE
+
+
+Detected: Berkeley
+Confidence: 95.90422
+Id : 1
+Parent Id: null
+Type: LINE
+
+
+Detected: LANE
+Confidence: 97.16221
+Id : 3
+Parent Id: null
+Type: LINE
+
+
+Detected: CLOSED FedE
+Confidence: 97.31947
+Id : 4
+Parent Id: null
+Type: LINE
+
+
+Detected: Downtown
+Confidence: 95.82787
+Id : 5
+Parent Id: 0
+Type: WORD
+
+
+Detected: Berkeley
+Confidence: 95.90422
+Id : 6
+Parent Id: 1
+Type: WORD
+
+
+Detected: LANE
+Confidence: 97.16221
+Id : 8
+Parent Id: 3
+Type: WORD
+
+
+Detected: CLOSED
+Confidence: 95.761795
+Id : 9
+Parent Id: 4
+Type: WORD
+
+
+Detected: FedE
+Confidence: 98.87715
+Id : 10
+Parent Id: 4
+Type: WORD
+
+
+3.jpg
+Detected lines and words
+Detected: ONLY
+Confidence: 99.954834
+Id : 2
+Parent Id: null
+Type: LINE
+
+
+Detected: BUS
+Confidence: 99.665405
+Id : 3
+Parent Id: null
+Type: LINE
+
+
+Detected: ONLY
+Confidence: 99.954834
+Id : 6
+Parent Id: 2
+Type: WORD
+
+
+Detected: BUS
+Confidence: 99.665405
+Id : 7
+Parent Id: 3
+Type: WORD
+
+
+6.jpeg
+Detected lines and words
+Detected: BUS
+Confidence: 99.93811
+Id : 0
+Parent Id: null
+Type: LINE
+
+
+Detected: Abbesse>
+Confidence: 91.54282
+Id : 1
+Parent Id: null
+Type: LINE
+
+
+Detected: ABBESSES
+Confidence: 99.882225
+Id : 2
+Parent Id: null
+Type: LINE
+
+
+Detected: ABBESSES
+Confidence: 99.91693
+Id : 3
+Parent Id: null
+Type: LINE
+
+
+Detected: LES
+Confidence: 99.68546
+Id : 4
+Parent Id: null
+Type: LINE
+
+
+Detected: LES
+Confidence: 99.42077
+Id : 5
+Parent Id: null
+Type: LINE
+
+
+Detected: DINNER
+Confidence: 98.315994
+Id : 7
+Parent Id: null
+Type: LINE
+
+
+Detected: BUS
+Confidence: 99.93811
+Id : 10
+Parent Id: 0
+Type: WORD
+
+
+Detected: Abbesse>
+Confidence: 91.54282
+Id : 11
+Parent Id: 1
+Type: WORD
+
+
+Detected: ABBESSES
+Confidence: 99.882225
+Id : 12
+Parent Id: 2
+Type: WORD
+
+
+Detected: ABBESSES
+Confidence: 99.91693
+Id : 13
+Parent Id: 3
+Type: WORD
+
+
+Detected: LES
+Confidence: 99.68546
+Id : 14
+Parent Id: 4
+Type: WORD
+
+
+Detected: LES
+Confidence: 99.42077
+Id : 15
+Parent Id: 5
+Type: WORD
+
+
+Detected: DINNER
+Confidence: 98.315994
+Id : 17
+Parent Id: 7
+Type: WORD
+
+
+8.jpeg
+Detected lines and words
+Detected: KEA
+Confidence: 98.51991
+Id : 0
+Parent Id: null
+Type: LINE
+
+
+Detected: NO
+Confidence: 99.55124
+Id : 1
+Parent Id: null
+Type: LINE
+
+
+Detected: TURNS
+Confidence: 100.0
+Id : 2
+Parent Id: null
+Type: LINE
+
+
+Detected: 7221
+Confidence: 92.18324
+Id : 6
+Parent Id: null
+Type: LINE
+
+
+Detected: KEA
+Confidence: 98.51991
+Id : 8
+Parent Id: 0
+Type: WORD
+
+
+Detected: NO
+Confidence: 99.55124
+Id : 9
+Parent Id: 1
+Type: WORD
+
+
+Detected: TURNS
+Confidence: 100.0
+Id : 10
+Parent Id: 2
+Type: WORD
+
+
+Detected: 7221
+Confidence: 92.18324
+Id : 14
+Parent Id: 6
+Type: WORD
+

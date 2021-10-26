@@ -64,17 +64,11 @@ public class App {
                 .maxNumberOfMessages(1)
                 .build();
             
-            System.out.println(System.getProperty("user.dir"));
+            // System.out.println(System.getProperty("user.dir"));
             // Print out the messages
             while (true) {
                 try{
-
-<<<<<<< HEAD
-                    File file = new File ("/home/ec2-user/text", "output.txt");
-                    FileWriter out = new FileWriter(file);
-=======
                     File file = new File (System.getProperty("user.dir"), "output.txt");
->>>>>>> fb985810ed11fca7c99cc6e96cd90160e8dc2bae
 
                     List<Message> messages = sqsClient.receiveMessage(receiveRequest).messages();
                     if (!messages.isEmpty()){
