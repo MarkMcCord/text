@@ -69,7 +69,7 @@ public class App {
             while (true) {
                 try{
 
-                    File file = new File (System.getProperty("user.dir"), "output.txt");
+                    File file = new File ("/home/ec2-user/text", "output.txt");
                     FileWriter out = new FileWriter(file);
 
                     List<Message> messages = sqsClient.receiveMessage(receiveRequest).messages();
